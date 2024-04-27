@@ -5,9 +5,19 @@ var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 
 var indexRouter = require("./routes/index");
+var loginRouter = require("./routes/login");
 var imagesRouter = require("./routes/images");
 
+const mongoose = require("mongoose");
+
 var app = express();
+
+mongoose
+  .connect(
+    "mongodb+srv://Cluster34115:92965mati@cluster34115.ju6z2xw.mongodb.net?retryWrites=true&w=majority"
+  )
+  .then(() => console.log("Conectado a la base de datos"))
+  .catch((err) => console.error("Error al conectar a la base de datos", err));
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
@@ -27,6 +37,8 @@ app.use(function (req, res, next) {
 });
 
 app.use("/", indexRouter);
+app.use("/login", loginRouter);
+
 app.use("/images", imagesRouter);
 
 // catch 404 and forward to error handler

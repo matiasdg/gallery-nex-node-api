@@ -1,5 +1,5 @@
 const jwt = require("jsonwebtoken");
-const secretKey = 'your_secret_key'; // Change this to a secure random string
+const secretKey = 'claveSecreta'; // Change this to a secure random string
 
 // Middleware to verify JWT token
 const verifyToken = (req, res, next) => {
